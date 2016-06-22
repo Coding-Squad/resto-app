@@ -1,0 +1,7 @@
+/.settings/*
+/.idea/*
+FeatherAssets.iml
+.springBeans
+.project
+.classpath
+/target/*
