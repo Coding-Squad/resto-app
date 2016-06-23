@@ -14,8 +14,6 @@ import java.util.Set;
 @Entity
 @Table(name = "company", schema = "feather_assets")
 public class CompanyEntity implements Serializable {
-    private Set<AssetEntity> assets;
-    private Set<ReaderEntity> readers;
     private int companyId;
     private String name;
     private String website;
@@ -23,24 +21,6 @@ public class CompanyEntity implements Serializable {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Timestamp deletedAt;
-
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
-    public Set<AssetEntity> getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Set<AssetEntity> assets) {
-        this.assets = assets;
-    }
-
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
-    public Set<ReaderEntity> getReaders() {
-        return readers;
-    }
-
-    public void setReaders(Set<ReaderEntity> readers) {
-        this.readers = readers;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -118,8 +98,6 @@ public class CompanyEntity implements Serializable {
     @Override
     public String toString() {
         return "CompanyEntity{" +
-                "assets=" + assets +
-                ", readers=" + readers +
                 ", companyId=" + companyId +
                 ", name='" + name + '\'' +
                 ", website='" + website + '\'' +

@@ -1,4 +1,4 @@
-package com.reminisense.ra;
+package com.reminisense.ra.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +33,7 @@ public class HomeController {
 
         model.addAttribute("serverTime", formattedDate);
 
-        return "home";
+        return "home.jsp";
     }
 
 }
