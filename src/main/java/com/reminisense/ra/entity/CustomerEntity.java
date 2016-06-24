@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * Created by Yumi on 6/23/2016.
  */
 @Entity
-@Table(name = "customer_details", schema = "customer_details")
+@Table(name = "customer_detail", schema = "customer_details")
 public class CustomerEntity {
 
     private int customerId;

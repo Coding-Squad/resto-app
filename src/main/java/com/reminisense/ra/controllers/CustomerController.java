@@ -48,7 +48,7 @@ public class CustomerController {
         if (customer == null) {
             throw new CustomerNotFoundException();
         }
-        model.addAttribute("customer");
+        model.addAttribute("customer", customer);
         model.addAttribute("listCustomer", this.customerService.listCustomers());
         return "customer.jsp";
     }
