@@ -21,11 +21,20 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public String listCustomers(Model model) {
+    public String customers(Model model) {
         model.addAttribute("customer", new CustomerEntity());
         model.addAttribute("listCustomer", this.customerService.listCustomers());
         return "customer.jsp";
     }
+
+    @RequestMapping(value = "/customer/list", method = RequestMethod.GET)
+    public String listCustomers(Model model) {
+        model.addAttribute("customer", new CustomerEntity());
+        model.addAttribute("listCustomer", this.customerService.listCustomers());
+        return "customerInfo.jsp";
+    }
+
+
 
     @RequestMapping(value = "/customer/add", method = RequestMethod.POST)
     public String addCustomer(@ModelAttribute("customer") CustomerEntity c) {

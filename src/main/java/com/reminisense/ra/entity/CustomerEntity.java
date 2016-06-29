@@ -10,60 +10,96 @@ import java.sql.Timestamp;
  * Created by Yumi on 6/23/2016.
  */
 @Entity
-@Table(name = "customer_detail", schema = "customer_details")
+@Table(name = "user", schema = "restoapp_db")
 public class CustomerEntity {
 
     private int customerId;
-    private String name;
-
-    private String email;
+    private String firstName;
+    private String lastName;
     private int phone;
+    private String email;
+    private String address;
+    private String username;
+    private String password;
+
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Timestamp deletedAt;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_number")
+    @Column(name = "user_id")
     public int getCustomerId() {
         return customerId;
     }
-
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-
     @Basic
-    @Column(name = "customer_name")
-    public String getName() {
-        return name;
+    @Column(name = "fname")
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Basic
+    @Column(name = "lname")
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
+    @Basic
+    @Column(name = "phone")
+    public int getPhone() {
+        return phone;
+    }
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
 
     @Basic
-    @Column(name = "customer_emailaddress")
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
+
     @Basic
-    @Column(name = "customer_phonenumber")
-    public int getPhone() {
-        return phone;
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
+    @Basic
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
     }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     @Basic
     @CreationTimestamp
@@ -101,8 +137,13 @@ public class CustomerEntity {
     public String toString() {
         return "CustomerEntity{" +
                 ", customerId=" + customerId +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +
