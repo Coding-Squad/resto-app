@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 @Table(name = "user", schema = "restoapp_db")
 public class CustomerEntity {
 
+
     private int customerId;
     private String firstName;
     private String lastName;
@@ -21,10 +22,12 @@ public class CustomerEntity {
     private String address;
     private String username;
     private String password;
-
+    private String role;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Timestamp deletedAt;
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,11 +50,16 @@ public class CustomerEntity {
 
     @Basic
     @Column(name = "lname")
-    public String getLastName() {
-        return lastName;
-    }
+    public String getLastName() {return lastName;}
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Basic
+    @Column(name = "user_role")
+    public String getRole() {return role;}
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Basic
@@ -90,6 +98,8 @@ public class CustomerEntity {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
 
     @Basic
     @Column(name = "password")
@@ -139,6 +149,7 @@ public class CustomerEntity {
                 ", customerId=" + customerId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", lastName='" + role + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +

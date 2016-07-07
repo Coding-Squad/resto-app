@@ -24,14 +24,14 @@ public class CustomerController {
     public String customers(Model model) {
         model.addAttribute("customer", new CustomerEntity());
         model.addAttribute("listCustomer", this.customerService.listCustomers());
-        return "customer.jsp";
+        return "customer";
     }
 
     @RequestMapping(value = "/customer/list", method = RequestMethod.GET)
     public String listCustomers(Model model) {
         model.addAttribute("customer", new CustomerEntity());
         model.addAttribute("listCustomer", this.customerService.listCustomers());
-        return "customerInfo.jsp";
+        return "customerInfo";
     }
 
 
@@ -59,7 +59,7 @@ public class CustomerController {
         }
         model.addAttribute("customer", customer);
         model.addAttribute("listCustomer", this.customerService.listCustomers());
-        return "customer.jsp";
+        return "customer";
     }
 
 

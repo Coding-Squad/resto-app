@@ -39,6 +39,28 @@
         </beans:property>
     </beans:bean>
 
+    <!-- Configure Hibernate 4 Session Factory -->
+    <beans:bean id="sessionFactory"
+                class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <beans:property name="dataSource">
+            <beans:ref bean="dataSource" />
+        </beans:property>
+
+        <beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
+                <beans:prop key="hibernate.show_sql">true</beans:prop>
+            </beans:props>
+        </beans:property>
+        <beans:property name="annotatedClasses">
+            <beans:list>
+                <beans:value>com.reminisense.ra.entity.CustomerEntity</beans:value> <!-- Entity classes-->
+            </beans:list>
+        </beans:property>
+
+    </beans:bean>
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <beans:bean id="transactionManager"
@@ -46,4 +68,6 @@
         <beans:property name="sessionFactory"
                         ref="hibernate4AnnotatedSessionFactory"/>
     </beans:bean>
+
+
 </beans:beans>

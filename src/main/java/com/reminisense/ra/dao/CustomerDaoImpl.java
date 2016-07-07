@@ -25,6 +25,7 @@ public class CustomerDaoImpl implements CustomerDao
 
     @Autowired
     @Qualifier("hibernate4AnnotatedSessionFactory")
+
     private SessionFactory sessionFactory;
 
     public CustomerEntity addCustomer(CustomerEntity c) {
@@ -66,4 +67,11 @@ public class CustomerDaoImpl implements CustomerDao
         logger.debug("Customer deleted successfully, customer details=" + p);
     }
 
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 }

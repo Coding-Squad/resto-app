@@ -75,6 +75,19 @@
         </tr>
 
         <tr>
+            <td><form:label path="role">
+                <spring:message text="User Role"/>
+            </form:label></td>
+            <td> <form:select path="role">
+                <form:option value="Customer" label="Customer" />
+                <form:option value="Admin"  label="Admin"/>
+            </form:select>
+            </td>
+
+
+        </tr>
+
+        <tr>
             <td><form:label path="phone">
                 <spring:message text="Phone Number"/>
             </form:label></td>
@@ -113,7 +126,15 @@
                 <c:if test="${customer.customerId != 0}">
                     <input type="submit" value="<spring:message text="Update Customer"/>"/>
                 </c:if> <c:if test="${customer.customerId == 0}">
-                <input type="submit" value="<spring:message text="Save"/>"/>
+                <form:form method="GET" action="/home">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Save"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form:form>
             </c:if>
             </td>
         </tr>

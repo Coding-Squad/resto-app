@@ -55,6 +55,7 @@
     <th width="80">Customer ID</th>
     <th width="120">First Name</th>
     <th width="120">Last Name</th>
+        <th width="120">Role</th>
     <th width="120">Phone</th>
     <th width="120">Email</th>
     <th width="120">Address</th>
@@ -69,6 +70,7 @@
             <td>${customer.customerId}</td>
             <td>${customer.firstName}</td>
             <td>${customer.lastName}</td>
+            <td>${customer.role}</td>
             <td>${customer.phone}</td>
             <td>${customer.email}</td>
             <td>${customer.address}</td>
