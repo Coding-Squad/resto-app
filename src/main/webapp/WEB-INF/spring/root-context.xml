@@ -55,7 +55,7 @@
         </beans:property>
         <beans:property name="annotatedClasses">
             <beans:list>
-                <beans:value>com.reminisense.ra.entity.CustomerEntity</beans:value> <!-- Entity classes-->
+                <beans:value>com.reminisense.ra.entity.UserEntity</beans:value> <!-- Entity classes-->
             </beans:list>
         </beans:property>
 

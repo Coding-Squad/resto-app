@@ -1,6 +1,6 @@
 package com.reminisense.ra.dao;
 
-import com.reminisense.ra.entity.CustomerEntity;
+import com.reminisense.ra.entity.DishEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -13,59 +13,59 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by Yumi on 6/23/2016.
+ * Created by Yumi on 7/7/2016.
  */
-
 @Repository
 @Transactional
-public class CustomerDaoImpl implements CustomerDao
-{
+public class DishDaoImpl implements DishDao {
     private static final Logger logger = LoggerFactory
-            .getLogger(CustomerDao.class);
+            .getLogger(DishDao.class);
 
     @Autowired
     @Qualifier("hibernate4AnnotatedSessionFactory")
 
+
     private SessionFactory sessionFactory;
 
-    public CustomerEntity addCustomer(CustomerEntity c) {
+    public DishEntity addDish(DishEntity c) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(c);
         session.flush();
-        logger.info("Customer saved successfully, Customer Details=" + c);
+        logger.info("Dish saved successfully, Dish Details=" + c);
         return c;
     }
 
-    public CustomerEntity updateCustomer(CustomerEntity c) {
+    public DishEntity updateDish(DishEntity c) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(c);
         session.flush();
-        logger.info("Customer updated successfully, Customer Details=" + c);
+        logger.info("Dish updated successfully, Dish Details=" + c);
         return c;
     }
 
-    public List<CustomerEntity> listCustomers() {
+    public List<DishEntity> listDishes() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<CustomerEntity> customerEntityList = session.createQuery( "from CustomerEntity").list();
-        return customerEntityList;
+        List<DishEntity> dishEntityList = session.createQuery( "from DishEntity").list();
+        return dishEntityList;
     }
 
-    public CustomerEntity getCustomerById(int id) {
+    public DishEntity getDishById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        CustomerEntity p = (CustomerEntity) session.get(CustomerEntity.class, new Integer(id));
+        DishEntity p = (DishEntity) session.get(DishEntity.class, new Integer(id));
 
-        logger.debug("Customer loaded successfully, Customer details=" + p);
+        logger.debug("Dish loaded successfully, Dish details=" + p);
         return p;
     }
 
-    public void removeCustomer(int id) {
+    public void removeDish(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        CustomerEntity p = (CustomerEntity) session.load(CustomerEntity.class, new Integer(id));
+        DishEntity p = (DishEntity) session.load(DishEntity.class, new Integer(id));
         if (null != p) {
             session.delete(p);
         }
-        logger.debug("Customer deleted successfully, customer details=" + p);
+        logger.debug("Dish deleted successfully, customer details=" + p);
     }
+
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

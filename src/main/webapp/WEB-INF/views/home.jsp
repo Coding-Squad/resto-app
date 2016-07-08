@@ -81,7 +81,7 @@
         </tr>
     </table>
 </form:form>
-<form:form method="GET" action="/customer">
+<form:form method="GET" action="/user">
     <table>
         <tr>
             <td>

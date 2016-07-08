@@ -7,14 +7,13 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Yumi on 6/23/2016.
+ * Created by Yumi on 7/7/2016.
  */
 @Entity
 @Table(name = "user", schema = "restoapp_db")
-public class CustomerEntity {
+public class UserEntity {
 
-
-    private int customerId;
+    private int userId;
     private String firstName;
     private String lastName;
     private int phone;
@@ -32,11 +31,11 @@ public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    public int getCustomerId() {
-        return customerId;
+    public int getUserId() {
+        return userId;
     }
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -145,11 +144,11 @@ public class CustomerEntity {
 
     @Override
     public String toString() {
-        return "CustomerEntity{" +
-                ", customerId=" + customerId +
+        return "UserEntity{" +
+                ", userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", lastName='" + role + '\'' +
+                ", role='" + role + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
@@ -160,5 +159,6 @@ public class CustomerEntity {
                 ", deletedAt=" + deletedAt +
                 '}';
     }
-}
 
+
+}

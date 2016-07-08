@@ -1,6 +1,6 @@
 package com.reminisense.ra.controllers;
 
-import com.reminisense.ra.entity.CustomerEntity;
+import com.reminisense.ra.entity.UserEntity;
 import com.reminisense.ra.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,14 +25,14 @@ public class LoginController {
 
     @RequestMapping(value = "loginForm", method = RequestMethod.GET)
     public String showForm(Map model) {
-        CustomerEntity loginForm = new CustomerEntity();
+        UserEntity loginForm = new UserEntity();
         model.put("home", loginForm);
         return "home";
     }
 
 
     @RequestMapping(value = "loginForm", method = RequestMethod.POST)
-    public String processForm(@Valid CustomerEntity loginForm, BindingResult result,
+    public String processForm(@Valid UserEntity loginForm, BindingResult result,
                               Map model) {
 
 
@@ -40,23 +40,16 @@ public class LoginController {
             return "home";
         }
 
-		/*
-		String userName = "UserName";
-		String password = "password";
-		loginForm = (LoginForm) model.get("loginForm");
-		if (!loginForm.getUserName().equals(userName)
-				|| !loginForm.getPassword().equals(password)) {
-			return "loginform";
-		}
-		*/
         boolean userExists = loginService.checkLogin(loginForm.getUsername(),loginForm.getPassword());
+
         if(userExists){
             model.put("home", loginForm);
-            return "redirect:/customer/list";
+            return "redirect:/user/list";
         }else{
             result.rejectValue("username","invaliduser  ");
             return "ErrorMsg";
         }
+
 
     }
 

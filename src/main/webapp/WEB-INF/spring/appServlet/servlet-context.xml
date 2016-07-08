@@ -65,7 +65,8 @@
         </beans:property>
         <beans:property name="annotatedClasses">
             <beans:list>
-                <beans:value>com.reminisense.ra.entity.CustomerEntity</beans:value> <!-- Entity classes-->
+                <beans:value>com.reminisense.ra.entity.DishEntity</beans:value>
+                <beans:value>com.reminisense.ra.entity.UserEntity</beans:value><!-- Entity classes-->
             </beans:list>
         </beans:property>
 
@@ -77,11 +78,14 @@
         <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </beans:bean>
 
-    <!-- Inject the instance to customerDAO reference with adding sessionFactory -->
-    <beans:bean id="customerDAO" class="com.reminisense.ra.dao.CustomerDaoImpl">
+    <!-- Inject the instance to userDAO reference with adding sessionFactory -->
+    <beans:bean id="userDao" class="com.reminisense.ra.dao.UserDaoImpl">
         <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </beans:bean>
 
+    <beans:bean id="dishDao" class="com.reminisense.ra.dao.DishDaoImpl">
+        <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
 
 
     <!-- Enable annotation driven controllers, validation etc... -->
@@ -100,7 +104,7 @@
     </beans:bean>
 
     <beans:bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+                class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <beans:property name="basename" value="/WEB-INF/messages" />
     </beans:bean>
 
@@ -117,7 +121,7 @@
     </beans:bean>
 
     <beans:bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+                class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <beans:property name="prefix">
             <beans:value>/WEB-INF/pages/</beans:value>
         </beans:property>
