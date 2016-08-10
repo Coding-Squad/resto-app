@@ -1,6 +1,6 @@
 package com.reminisense.ra.dao;
 
-import com.reminisense.ra.entity.DishEntity;
+import com.reminisense.ra.entity.Company;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -12,14 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Yumi on 7/7/2016.
- */
+
 @Repository
 @Transactional
-public class DishDaoImpl implements DishDao {
+public class CompanyDaoImpl implements CompanyDao
+{
     private static final Logger logger = LoggerFactory
-            .getLogger(DishDao.class);
+            .getLogger(CompanyDao.class);
 
     @Autowired
     @Qualifier("hibernate4AnnotatedSessionFactory")
@@ -27,43 +26,53 @@ public class DishDaoImpl implements DishDao {
 
     private SessionFactory sessionFactory;
 
-    public DishEntity addDish(DishEntity c) {
+
+    public Company addCompany(Company c) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(c);
         session.flush();
-        logger.info("Dish saved successfully, Dish Details=" + c);
+
+        logger.info("Company saved successfully, Company Details=" + c);
         return c;
     }
 
-    public DishEntity updateDish(DishEntity c) {
+    public Company updateCompany(Company c) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(c);
         session.flush();
-        logger.info("Dish updated successfully, Dish Details=" + c);
+        logger.info("Company updated successfully, Company Details=" + c);
         return c;
     }
 
-    public List<DishEntity> listDishes() {
+
+    public List<Company> listCompanies() {
         Session session = this.sessionFactory.getCurrentSession();
-        List<DishEntity> dishEntityList = session.createQuery( "from DishEntity").list();
-        return dishEntityList;
+        List<Company> companyList = session.createQuery( "from Company").list();
+        return companyList;
     }
 
-    public DishEntity getDishById(int id) {
+    public List<Company> getCompaniesByName() {
         Session session = this.sessionFactory.getCurrentSession();
-        DishEntity p = (DishEntity) session.get(DishEntity.class, new Integer(id));
-
-        logger.debug("Dish loaded successfully, Dish details=" + p);
+        List<Company> p = session.createQuery( "select name from Company").list();
         return p;
     }
 
-    public void removeDish(int id) {
+
+    public Company getCompanyById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        DishEntity p = (DishEntity) session.load(DishEntity.class, new Integer(id));
+        Company p = (Company) session.get(Company.class, new Integer(id));
+
+        logger.debug("Company loaded successfully, Company details=" + p);
+        return p;
+    }
+
+    public void removeCompany(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Company p = (Company) session.load(Company.class, new Integer(id));
         if (null != p) {
             session.delete(p);
         }
-        logger.debug("Dish deleted successfully, customer details=" + p);
+        logger.debug("Company deleted successfully, company details=" + p);
     }
 
 
@@ -74,4 +83,7 @@ public class DishDaoImpl implements DishDao {
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
+
+
 }

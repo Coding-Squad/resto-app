@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -11,17 +12,18 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "user", schema = "restoapp_db")
-public class UserEntity {
+public class UserEntity implements Serializable {
 
     private int userId;
     private String firstName;
     private String lastName;
-    private int phone;
-    private String email;
     private String address;
-    private String username;
+    private String phone;
+    private String email;
+   private String username;
     private String password;
-    private String role;
+    private Timestamp lastPasswordReset;
+    private String authorities;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Timestamp deletedAt;
@@ -39,7 +41,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "fname")
+    @Column(name = "fName")
     public String getFirstName() {
         return firstName;
     }
@@ -48,25 +50,18 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "lname")
+    @Column(name = "lName")
     public String getLastName() {return lastName;}
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    @Basic
-    @Column(name = "user_role")
-    public String getRole() {return role;}
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Basic
+        @Basic
     @Column(name = "phone")
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -79,16 +74,6 @@ public class UserEntity {
         this.email = email;
     }
 
-
-    @Basic
-    @Column(name = "address")
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     @Basic
     @Column(name = "username")
     public String getUsername() {
@@ -99,6 +84,15 @@ public class UserEntity {
     }
 
 
+    @Basic
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
     @Basic
     @Column(name = "password")
@@ -108,6 +102,27 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Basic
+    @Column(name = "last_password_reset")
+    public Timestamp getLastPasswordReset() {
+        return lastPasswordReset;
+    }
+
+    public void setLastPasswordReset(Timestamp lastPasswordReset) {
+        this.lastPasswordReset = lastPasswordReset;
+    }
+
+    @Basic
+    @Column(name = "authorities")
+    public String getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
 
 
     @Basic
@@ -142,18 +157,21 @@ public class UserEntity {
         this.deletedAt = deletedAt;
     }
 
+
+
     @Override
     public String toString() {
         return "UserEntity{" +
-                ", userId=" + userId +
+                "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role='" + role + '\'' +
+                ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", lastPasswordReset=" + lastPasswordReset +
+                ", authorities='" + authorities + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +

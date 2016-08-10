@@ -1,5 +1,6 @@
 package com.reminisense.ra.dao;
 
+import com.reminisense.ra.dto.json.UserDto;
 import com.reminisense.ra.entity.UserEntity;
 
 import java.util.List;
@@ -17,4 +18,9 @@ public interface UserDao {
     UserEntity getUserById(int id);
 
     void removeUser(int id);
+
+    UserEntity findByEmail(String email);
+
+
+
 }

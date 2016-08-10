@@ -4,37 +4,37 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Rubyline on 7/10/2016.
+ * Created by Yumi on 7/12/2016.
  */
 @Entity
 @Table(name = "company", schema = "restoapp_db")
-public class CompanyEntity implements java.io.Serializable {
+public class Company implements Serializable
+{
+    private Set<Meal> meals;
+
     private int companyId;
     private String name;
-    private Set<MealEntity> mealEntity = new HashSet<MealEntity>(0);
     private String address;
+    private String phone;
+
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Timestamp deletedAt;
 
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-    public Set<MealEntity> getMealEntity() {
-        return this.mealEntity;
-    }
-
-    public void setMealEntity(Set<MealEntity> mealEntity) {
-        this.mealEntity = mealEntity;
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    public Set<Meal> getMeals() {return meals;}
+    public void setMeals(Set<Meal> meals) {
+        this.meals = meals;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "resto_id")
+    @Column(name = "company_id")
     public int getCompanyId() {
         return companyId;
     }
@@ -47,7 +47,7 @@ public class CompanyEntity implements java.io.Serializable {
     public String getName() {
         return name;
     }
-        public void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -61,6 +61,15 @@ public class CompanyEntity implements java.io.Serializable {
         this.address = address;
     }
 
+
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 
     @Basic
@@ -100,16 +109,17 @@ public class CompanyEntity implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "CompanyEntity{" +
+        return "Company{" +
                 ", companyId=" + companyId +
+                ", meals='" + meals + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", deletedAt=" + deletedAt +
                 '}';
 
     }
-
 
 }
